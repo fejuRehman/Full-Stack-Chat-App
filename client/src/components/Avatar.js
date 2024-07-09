@@ -42,11 +42,11 @@ const Avatar = ({userId,name,imageUrl,width,height}) => {
                     width={width}
                     height={height}
                     alt={name}
-                    className='overflow-hidden rounded-full'
+                    className='overflow-hidden rounded-full object-scale-down'
                 />
             ) : (
                 name ? (
-                    <div  style={{width : width+"px", height : height+"px" }} className={`overflow-hidden rounded-full flex justify-center items-center text-lg ${bgColor[randomNumber]}`}>
+                    <div  style={{width : width+"px", height : height+"px" }} className={`overflow-hidden rounded-full flex justify-center  items-center text-lg ${bgColor[randomNumber]}`}>
                         {avatarName}
                     </div>
                 ) :(

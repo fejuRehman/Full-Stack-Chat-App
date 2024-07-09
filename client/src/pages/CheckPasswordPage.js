@@ -4,7 +4,7 @@ import { Link ,useNavigate,useLocation} from 'react-router-dom';
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import Avatar from '../components/Avatar';
-import { setToken, setUser } from '../redux/userSlice';
+import { setToken } from '../redux/userSlice';
 
 const CheckPasswordPage = () => {
 
@@ -22,7 +22,7 @@ const CheckPasswordPage = () => {
       if(!location?.state?.name){
           navigate('/email')
       }
-  },[])
+  })
 
   const handleOnChange = (e)=>{
     const { name, value} = e.target
