@@ -41,7 +41,7 @@ const CheckPasswordPage = () => {
     e.preventDefault()
     e.stopPropagation()
     const URL = `${process.env.REACT_APP_BACKEND_URL}/api/password`
-
+     console.log("userId",location?.state?._id)
     try{
       const response = await axios({
         method :'post',
