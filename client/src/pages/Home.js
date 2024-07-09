@@ -65,7 +65,7 @@ const Home = () => {
          
          socketConnection.disconnect()
      }
- })
+ },[dispatch])
 
 
 
