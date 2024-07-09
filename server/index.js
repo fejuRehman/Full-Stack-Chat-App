@@ -11,7 +11,7 @@ require('dotenv').config();
 
 // Middleware
 app.use(cors({
-    origin: process.env.FRONTEND_URL,
+    origin: "https://master--feju-chat-app.netlify.app",
     credentials: true
 }));
 app.use(express.json());
