@@ -13,17 +13,19 @@ const io=new Server(server,{
      cors:{
         origin:"https://feju-chat-app.netlify.app",
         credentials: true
-      }
+      },
+      pingInterval: 25000, // 25 seconds
+      pingTimeout: 60000   // 60 seconds
 })
  
-// socket running at http://localhost:8080/
+
 
 const onlineUser=new Set()
 io.on('connection',async(socket)=>{
      console.log("connected user",socket.id)
      
      const token=socket.handshake.auth.token
-    //  console.log("token",token)
+     console.log("token",token)
 
      // get current user detail
      const user=await getUserDetailsFromToken(token)
