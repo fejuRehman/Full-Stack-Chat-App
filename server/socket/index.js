@@ -14,8 +14,7 @@ const io=new Server(server,{
         origin:"https://feju-chat-app.netlify.app",
         credentials: true
       },
-      pingInterval: 25000, // 25 seconds
-      pingTimeout: 60000   // 60 seconds
+
 })
  
 
