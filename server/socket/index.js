@@ -1,5 +1,5 @@
 const express=require('express')
-const {Server}=require('socket.io')
+const Server=require('socket.io')
 const http =require('http')
 const getUserDetailsFromToken = require('../helpers/getUserDetailFromToken')
 const userModel = require('../models/UserModel')
@@ -9,9 +9,10 @@ const app=express()
 
 // socket connection 
 const server=http.createServer(app)
-const io=new Server(server,{
+const io=Server(server,{
      cors:{
         origin:"https://feju-chat-app.netlify.app",
+        method: ["GET","POST"],
         credentials: true
       },
 
@@ -25,7 +26,7 @@ io.on('connection',async(socket)=>{
      console.log("connected user",socket.id)
      
      const token=socket.handshake.auth.token
-     console.log("token",token)
+     console.log("token from socket side",token)
 
      // get current user detail
      const user=await getUserDetailsFromToken(token)
