@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Outlet ,useLocation,useNavigate} from 'react-router-dom'
 import axios from 'axios'
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import { logout, setOnlineUser, setSocketConnection, setUser } from '../redux/userSlice'
 import Sidebar from '../components/Sidebar'
 import logo from "../assets/logo.png"
@@ -9,21 +9,28 @@ import io from "socket.io-client"
 
 const Home = () => {
   
- 
+  const user = useSelector(state => state.user)
   const dispatch=useDispatch()
   const navigate=useNavigate()
   const location=useLocation()
-//   console.log("current user details",user)
+  console.log("current user details",user)
 
   
   const fetchUserDetails=async()=>{
        try{
         const URL = `${process.env.REACT_APP_BACKEND_URL}/api/user-details`
-        const response=await axios({
-            url:URL,
-            withCredentials:true
+
+        const responseData=fetch(URL,{
+              method:"GET",
+              credentials:true
         })
+        // const response=await axios({
+        //     url:URL,
+        //     withCredentials:true
+        // })
         
+        const response=await responseData.json();
+        console.log("fetch user details: ",response);
         dispatch(setUser(response?.data?.data))
 
         if(response.data.data.logout){
@@ -40,7 +47,7 @@ const Home = () => {
 
   useEffect(()=>{
      fetchUserDetails()
-  })
+  },[])
 
   
   // socket connection 
